@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Retail Shop Billing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-icon"><i class="fas fa-store"></i></div>
+            <h2>Retail Shop</h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="products.html" class="active"><i class="fas fa-box"></i> Products</a></li>
+            <li><a href="customers.html"><i class="fas fa-users"></i> Customers</a></li>
+            <li><a href="billing.html"><i class="fas fa-file-invoice-dollar"></i> Billing</a></li>
+        </ul>
+        <button class="theme-toggle" id="theme-toggle"><i class="fas fa-moon"></i> Dark Mode</button>
+    </div>
+
+    <div class="main-content">
+        <div class="page-intro">
+            <div>
+                <p class="eyebrow">Inventory</p>
+                <h1>Product Management</h1>
+                <p class="subtext">Stay on top of pricing, stock, and categories at a glance.</p>
+            </div>
+            <div class="page-actions">
+                <button class="btn btn-primary" id="add-product-btn"><i class="fas fa-plus"></i> Add Product</button>
+            </div>
+        </div>
+
+        <div class="table-filters">
+            <div class="input-icon">
+                <i class="fas fa-search"></i>
+                <input type="text" id="product-filter" placeholder="Search by name, category or price" aria-label="Filter products">
+            </div>
+            <div class="chip-group">
+                <span class="chip" id="product-counter">0 items</span>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="products-table">
+                    <!-- Populated by JS -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Add/Edit Product Modal -->
+    <div class="modal" id="product-modal">
+        <div class="modal-content">
+            <h2 id="modal-title">Add Product</h2>
+            <form id="product-form">
+                <input type="hidden" id="product-id">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id="product-name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <input type="text" id="product-category" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Price</label>
+                    <input type="number" id="product-price" class="form-control" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label>Stock</label>
+                    <input type="number" id="product-stock" class="form-control" required>
+                </div>
+                <div style="text-align: right; margin-top: 20px;">
+                    <button type="button" class="btn" id="cancel-btn"
+                        style="background: transparent; border: 1px solid var(--border-color);">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/products.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customers - Retail Shop Billing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-icon"><i class="fas fa-store"></i></div>
+            <h2>Retail Shop</h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="products.html"><i class="fas fa-box"></i> Products</a></li>
+            <li><a href="customers.html" class="active"><i class="fas fa-users"></i> Customers</a></li>
+            <li><a href="billing.html"><i class="fas fa-file-invoice-dollar"></i> Billing</a></li>
+        </ul>
+        <button class="theme-toggle" id="theme-toggle"><i class="fas fa-moon"></i> Dark Mode</button>
+    </div>
+
+    <div class="main-content">
+        <div class="page-intro">
+            <div>
+                <p class="eyebrow">Customers</p>
+                <h1>Customer Management</h1>
+                <p class="subtext">Maintain contact info and respond faster to repeat shoppers.</p>
+            </div>
+            <div class="page-actions">
+                <button class="btn btn-primary" id="add-customer-btn"><i class="fas fa-plus"></i> Add Customer</button>
+            </div>
+        </div>
+
+        <div class="table-filters">
+            <div class="input-icon">
+                <i class="fas fa-search"></i>
+                <input type="text" id="customer-filter" placeholder="Search by name, phone or email" aria-label="Filter customers">
+            </div>
+            <div class="chip-group">
+                <span class="chip" id="customer-counter">0 customers</span>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="customers-table">
+                    <!-- Populated by JS -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Add/Edit Customer Modal -->
+    <div class="modal" id="customer-modal">
+        <div class="modal-content">
+            <h2 id="modal-title">Add Customer</h2>
+            <form id="customer-form">
+                <input type="hidden" id="customer-id">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id="customer-name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="text" id="customer-phone" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="customer-email" class="form-control">
+                </div>
+                <div style="text-align: right; margin-top: 20px;">
+                    <button type="button" class="btn" id="cancel-btn"
+                        style="background: transparent; border: 1px solid var(--border-color);">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/customers.js"></script>
+</body>
+
+</html>

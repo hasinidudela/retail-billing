@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing - Retail Shop Billing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="sidebar no-print">
+        <div class="sidebar-header">
+            <div class="logo-icon"><i class="fas fa-store"></i></div>
+            <h2>Retail Shop</h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="products.html"><i class="fas fa-box"></i> Products</a></li>
+            <li><a href="customers.html"><i class="fas fa-users"></i> Customers</a></li>
+            <li><a href="billing.html" class="active"><i class="fas fa-file-invoice-dollar"></i> Billing</a></li>
+        </ul>
+        <button class="theme-toggle" id="theme-toggle"><i class="fas fa-moon"></i> Dark Mode</button>
+    </div>
+
+    <div class="main-content no-print">
+        <div class="page-intro">
+            <div>
+                <p class="eyebrow">Point of Sale</p>
+                <h1>Billing & Checkout</h1>
+                <p class="subtext">Build carts faster with live search, discounts, and printable invoices.</p>
+            </div>
+        </div>
+
+        <div class="billing-container">
+            <div class="left-panel">
+                <div class="card product-search" style="margin-bottom: 20px;">
+                    <h3 style="margin-bottom: 15px;"><i class="fas fa-search"></i> Add Items</h3>
+                    <div class="form-group" style="position: relative;">
+                        <input type="text" id="product-search" class="form-control"
+                            placeholder="Search product by name..." autocomplete="off">
+                        <div id="search-results" class="search-results"></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3 style="margin-bottom: 15px;"><i class="fas fa-shopping-cart"></i> Cart</h3>
+                    <div class="table-container"
+                        style="box-shadow: none; padding: 0; background: transparent; border: none;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th>Qty</th>
+                                    <th>Total</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cart-items">
+                                <!-- Cart items -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="right-panel">
+                <div class="card bill-summary">
+                    <h3 style="margin-bottom: 20px;"><i class="fas fa-receipt"></i> Bill Details</h3>
+                    <div class="form-group">
+                        <label>Customer</label>
+                        <select id="customer-select" class="form-control">
+                            <option value="">Select Customer</option>
+                        </select>
+                    </div>
+                    <div class="bill-row">
+                        <span>Sub Total:</span>
+                        <span id="sub-total">$0.00</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Discount ($)</label>
+                        <input type="number" id="discount" class="form-control" value="0" min="0">
+                    </div>
+                    <div class="bill-row total-row">
+                        <span>Grand Total:</span>
+                        <span id="grand-total">$0.00</span>
+                    </div>
+                    <button class="btn btn-success" style="width: 100%; margin-top: 20px; justify-content: center;"
+                        id="checkout-btn">
+                        <i class="fas fa-print"></i> Checkout & Print
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Invoice View (Hidden, only for print) -->
+    <div id="invoice-view">
+        <div class="invoice-header" style="text-align: center; margin-bottom: 30px;">
+            <h1 style="font-size: 2.5rem; margin-bottom: 10px;">RETAIL SHOP</h1>
+            <p>123 Market Street, Cityville</p>
+            <p>Phone: (555) 123-4567</p>
+        </div>
+        <hr style="border: 1px solid #eee; margin: 20px 0;">
+        <div class="invoice-details" style="display: flex; justify-content: space-between; margin-bottom: 30px;">
+            <div>
+                <p><strong>Bill ID:</strong> <span id="inv-bill-id"></span></p>
+                <p><strong>Date:</strong> <span id="inv-date"></span></p>
+            </div>
+            <div style="text-align: right;">
+                <p><strong>Customer:</strong> <span id="inv-customer"></span></p>
+            </div>
+        </div>
+        <table class="invoice-table" style="width: 100%; border-collapse: collapse; margin-bottom: 30px;">
+            <thead>
+                <tr style="background: #f8f9fa;">
+                    <th style="padding: 10px; text-align: left; border-bottom: 2px solid #ddd;">Item</th>
+                    <th style="padding: 10px; text-align: center; border-bottom: 2px solid #ddd;">Qty</th>
+                    <th style="padding: 10px; text-align: right; border-bottom: 2px solid #ddd;">Price</th>
+                    <th style="padding: 10px; text-align: right; border-bottom: 2px solid #ddd;">Total</th>
+                </tr>
+            </thead>
+            <tbody id="inv-items"></tbody>
+        </table>
+        <div class="invoice-totals" style="text-align: right;">
+            <p style="margin-bottom: 5px;">Sub Total: <span id="inv-sub-total"></span></p>
+            <p style="margin-bottom: 10px;">Discount: <span id="inv-discount"></span></p>
+            <h3 style="font-size: 1.5rem; border-top: 2px solid #333; display: inline-block; padding-top: 10px;">Grand
+                Total: <span id="inv-grand-total"></span></h3>
+        </div>
+        <div class="invoice-footer" style="text-align: center; margin-top: 50px; color: #666;">
+            <p>Thank you for shopping with us!</p>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/billing.js"></script>
+</body>
+
+</html>
